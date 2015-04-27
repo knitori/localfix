@@ -16,11 +16,11 @@ class tx_localfix_tcehook {
 	 * @param string $table
 	 * @param mixed $id
 	 * @param array $fieldArray
-	 * @param \TYPO3\CMS\Core\DataHandling\DataHandler $pObj
+	 * @param mixed $pObj
 	 */
 	function processDatamap_postProcessFieldArray($status, $table, $id, &$fieldArray, &$pObj) {
 		if($table == 'tt_content') {
-			if(in_array($status, ['update'])) {
+			if(in_array($status, array('update'))) {
 				// if sys_language_id is set, it's being changed. if it has a truthy value of "false", it's set to default.
 				if(isset($fieldArray['sys_language_uid']) && !$fieldArray['sys_language_uid']) {
 					$fieldArray['l18n_parent'] = 0;
